@@ -18,6 +18,11 @@
   border-radius: 12px;
   padding: 15px 10px;
   justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.task-item:last-of-type {
+  margin-bottom: none;
 }
 
 .content {
