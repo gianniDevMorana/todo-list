@@ -3,7 +3,6 @@
   flex-direction: column;
   align-items: center;
   padding-top: 60px;
-  
 }
 
 .input-task {
@@ -22,7 +21,7 @@
 }
 
 .task-item:last-of-type {
-  margin-bottom: none;
+  margin-bottom: 0px;
 }
 
 .content {
@@ -53,7 +52,13 @@
   align-items: center;
 }
 
-#delete-button {
+.delete-button {
   border: none;
   background-color: white;
+}
+
+#scroll-container {
+  height: 70vh;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
 }
