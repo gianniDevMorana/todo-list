@@ -1,10 +1,11 @@
 function addTaskItem() {
-  // TODO:
-  // [] grab the input value from here
-  // [] pass the value to the createTaskItem
-  // [] remove the current input value
-  const taskItem = createTaskItem();
+  const newInput = document.getElementById("new-task");
+  if (newInput.value === "") {
+    return;
+  }
+  const taskItem = createTaskItem(newInput.value);
   document.getElementById("scroll-container").appendChild(taskItem);
+  newInput.value = "";
 }
 
 function deleteTaskItem() {
@@ -17,13 +18,13 @@ function checkTaskItem() {
   // ... do logic here
 }
 
-function createTaskItem() {
+function createTaskItem(taskName) {
   const task = createElementWithClass("div", "task-item");
   const content = createElementWithClass("div", "content");
   const input = document.createElement("input");
   input.setAttribute("type", "checkbox");
   const text = createElementWithClass("div", "task-text");
-  text.innerText = "Example";
+  text.innerText = taskName;
   const deleteButton = createElementWithClass("button", "delete-button");
   const closeIcon = createElementWithClass("span", "material-symbols-outlined");
   closeIcon.innerText = "close";
