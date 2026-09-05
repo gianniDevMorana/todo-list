@@ -40,6 +40,11 @@
   margin-left: 10px;
 }
 
+.task-text-checkboxed {
+  text-decoration: line-through;
+  opacity: 0.4;
+}
+
 .add-button {
   border: none;
   border-radius: 8px;
@@ -56,6 +61,7 @@
 .delete-button {
   border: none;
   background-color: white;
+  cursor: pointer;
 }
 
 #scroll-container {
