@@ -14,19 +14,26 @@ function deleteTaskItem(e) {
 }
 
 function checkTaskItem(e) {
-  if (e.target.checked) {
-    e.target.nextSibling.classList.add("task-text-checkboxed");
+  const content = e.target.querySelector('#content');
+  const contentChildren = content.children;
+  const checkbox = contentChildren[0];
+  const taskTitle = contentChildren[1];
+
+  checkbox.checked = !checkbox.checked;
+  if (checkbox.checked) {
+    taskTitle.classList.add("task-text-checkboxed");
   } else {
-    e.target.nextSibling.classList.remove("task-text-checkboxed");
+    taskTitle.classList.remove("task-text-checkboxed");
   }
 }
 
 function createTaskItem(taskName) {
   const task = createElementWithClass("div", "task-item");
   const content = createElementWithClass("div", "content");
+  content.setAttribute("id", "content");
   const checkbox = document.createElement("input");
   checkbox.setAttribute("type", "checkbox");
-  checkbox.addEventListener("click", checkTaskItem);
+  task.addEventListener("click", checkTaskItem);
   const text = createElementWithClass("div", "task-text");
   text.innerText = taskName;
   const deleteButton = createElementWithClass("button", "delete-button");
@@ -46,3 +53,11 @@ function createElementWithClass(elName, className) {
   element.classList.add(className);
   return element;
 }
+
+// Next steps
+
+// Update checkTaskItem() and createTaskItem() by creating ID's and querySelector()
+// Cursor always focused on add task
+// Find out errors when deleting task elements
+// Allow user to enter new task by pressing ENTER
+// When the page is open input should have focus
