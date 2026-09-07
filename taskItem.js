@@ -6,6 +6,12 @@ function addTaskItem() {
   const taskItem = createTaskItem(newInput.value);
   document.getElementById("scroll-container").appendChild(taskItem);
   newInput.value = "";
+
+  newInput.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+      document.getElementById("add-button").click();
+    }
+  });
 }
 
 function deleteTaskItem(e) {
@@ -14,10 +20,9 @@ function deleteTaskItem(e) {
 }
 
 function checkTaskItem(e) {
-  const content = e.target.querySelector('#content');
-  const contentChildren = content.children;
-  const checkbox = contentChildren[0];
-  const taskTitle = contentChildren[1];
+  const content = e.target.querySelector("#content");
+  const checkbox = content.querySelector("#checkbox");
+  const taskTitle = content.querySelector("#task-title");
 
   checkbox.checked = !checkbox.checked;
   if (checkbox.checked) {
@@ -33,9 +38,11 @@ function createTaskItem(taskName) {
   content.setAttribute("id", "content");
   const checkbox = document.createElement("input");
   checkbox.setAttribute("type", "checkbox");
+  checkbox.setAttribute("id", "checkbox");
   task.addEventListener("click", checkTaskItem);
   const text = createElementWithClass("div", "task-text");
   text.innerText = taskName;
+  text.setAttribute("id", "task-title");
   const deleteButton = createElementWithClass("button", "delete-button");
   const closeIcon = createElementWithClass("span", "material-symbols-outlined");
   closeIcon.innerText = "close";
@@ -54,10 +61,25 @@ function createElementWithClass(elName, className) {
   return element;
 }
 
+window.onload = function setFocusOnLoadPage() {
+  document.getElementById("new-task").focus();
+};
+
+function setFocusOnAddTask() {
+  document.getElementById("add-button").addEventListener("click", () => {
+    document.getElementById("new-task").focus();
+  });
+}
+
+setFocusOnAddTask();
+addTaskItem();
+
+
+
 // Next steps
 
-// Update checkTaskItem() and createTaskItem() by creating ID's and querySelector()
+// Done: Update checkTaskItem() and createTaskItem() by creating ID's and querySelector()
 // Cursor always focused on add task
 // Find out errors when deleting task elements
 // Allow user to enter new task by pressing ENTER
-// When the page is open input should have focus
+// Done: When the page is open input should have focus
