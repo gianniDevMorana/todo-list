@@ -7,12 +7,19 @@ function addTaskItem() {
   document.getElementById("scroll-container").appendChild(taskItem);
   newInput.value = "";
 
-  newInput.addEventListener("keypress", function(event) {
+  newInput.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
       document.getElementById("add-button").click();
     }
   });
 }
+
+const newTask = document.getElementById("new-task");
+newTask.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+      document.getElementById("add-button").click();
+    }
+  });
 
 function deleteTaskItem(e) {
   const taskItem = e.target.closest(".task-item");
@@ -20,7 +27,7 @@ function deleteTaskItem(e) {
 }
 
 function checkTaskItem(e) {
-  const content = e.target.querySelector("#content");
+  const content = e.currentTarget.querySelector("#content");
   const checkbox = content.querySelector("#checkbox");
   const taskTitle = content.querySelector("#task-title");
 
@@ -74,12 +81,6 @@ function setFocusOnAddTask() {
 setFocusOnAddTask();
 addTaskItem();
 
-
-
 // Next steps
 
-// Done: Update checkTaskItem() and createTaskItem() by creating ID's and querySelector()
-// Cursor always focused on add task
-// Find out errors when deleting task elements
 // Allow user to enter new task by pressing ENTER
-// Done: When the page is open input should have focus
